@@ -4,25 +4,30 @@ Custom configuration format.
 
 ### Config format
 ```
-section [attributes] {
+section {
     field: value,
     subsection [attribute=value] {
         field: value
         list: {element1, element2, element3}
     }
+    another_subsection [attribute1, attribute2] {
+        field: "Some string",
+        empty_subsubsection {}
+    }
 }
 ```
 
 ### API
-Base type for config is `xcfg::Value`.
+Base type for config is `xcfg::Value`.  
 Values can store an object (key-value pair) or a string value.  
 Values can also be empty or contain an expression.   
   
-A string value of a field can be accessed using `xcfg::Value::string()`.  
-Attributes are accessible through `xcfg::Value::attrs()`.  
-Subsections can be accessed using `xcfg::Value::items()`.  
-Also it is possible to get nested value using `xcfg::Value::get(const std::string& path)`, e.g. `root.get("section.subsection.value")`, which itself will return `xcfg::Value`.
-Type of value can be checked using `xcfg::Value::isString()` and `xcfg::Value::isObject()`.  
+`xcfg::Value::string()` - returns string value of a field.  
+`xcfg::Value::attrs()` - returns attributes of a section as a map of `string` and `string`.  
+`xcfg::Value::items()` - returns fields and subsections as map of `string` and `Value`.  
+`xcfg::Value::get(const std::string& path)` - returns nested value, e.g. `root.get("section.subsection.value")`, which itself will return `xcfg::Value`.  
+`xcfg::Value::isString()` - returns true if value is a string.  
+`xcfg::Value::isObject()` - returns true if value is an object.  
   
 String can be parsed into a `xcfg::Value` using `xcfg::parse(const std::string& src)`.  
 As was mentioned above - a value can also be an expression.  
@@ -43,9 +48,11 @@ section {
     }
 }
 ```
-`include` takes 1 parameter - path to file, which will be parsed and inserted in place of include directive.  
-`define` takes 2 parameters - name and value of a constant.  
-`insert` takes 1 parameter - comma separated path of an element relative to root, this element will be inserted in place.  
+  
+`include` - takes 1 parameter - path to file, which will be parsed and inserted in place of include directive.  
+`define` - takes 2 parameters - name and value of a constant.  
+`insert` - takes 1 parameter - comma separated path of an element relative to root, this element will be inserted in place.  
+  
 Any other words encased in `${}` will be treated as a constant name, and will be inserted in place.
 
 
