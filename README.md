@@ -25,7 +25,7 @@ Values can also be empty or contain an expression.
 `xcfg::Value::string()` - returns string value of a field.  
 `xcfg::Value::attrs()` - returns attributes of a section as a map of `string` and `string`.  
 `xcfg::Value::items()` - returns fields and subsections as map of `string` and `Value`.  
-`xcfg::Value::get(const std::string& path)` - returns nested value, e.g. `root.get("section.subsection.value")`, which itself will return `xcfg::Value`.  
+`xcfg::Value::get(const std::string& path)` - returns nested value, e.g. `root.get("section.subsection.field")`, which itself will return `xcfg::Value`.  
 `xcfg::Value::isString()` - returns true if value is a string.  
 `xcfg::Value::isObject()` - returns true if value is an object.  
   
