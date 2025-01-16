@@ -1,0 +1,25 @@
+${include example_defines.xcfg}
+zombie {
+  name: "Zombie",
+  type: entity,
+  tag: zombie,
+  health: 100,
+  attack {
+    type: projectile,
+    projectile: axe,
+  }
+  animations {
+    idle {
+      speed: ${animation_speed},
+      frames {zombie_idle_0, zombie_idle_1}
+    }
+    move {
+      ${insert zombie.animations.idle}
+    }
+    attack {
+      speed: ${animation_speed},
+      frames {z1, z2, z3}
+    }
+    die {}
+  }
+}

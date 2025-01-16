@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# MacOS
+.locale
+.DS_Store
+
+# CMake
+cmake-*/
+
+# IDE/Editors
+.idea/
+.vscode/
+.sw*
