@@ -3,7 +3,7 @@ project(raycc)
 
 set(CMAKE_CXX_STANDARD 17)
 
-if ($ENV{PWD} STREQUAL ${CMAKE_BINARY_DIR})
+if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
     message(FATAL_ERROR "Prevent build in source directory")
 endif ()
 
